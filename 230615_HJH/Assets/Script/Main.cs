@@ -4,40 +4,43 @@ using UnityEngine;
 
 public class Main : MonoBehaviour
 {
+    List<Character> characterList;
 
 
-    int a;
-
-    int[] arrayNumber = new int[10];
-
-    Enemy[] enemyList = new Enemy[10];
-
-    List<int> listNumber = new List<int>();
-    List<Enemy> eList = new List<Enemy>();
-
-    void Start()
+     void Start()
     {
-        eList[0] = new Enemy("name", 10);
+        characterList = new List<Character>();
 
-        eList.Add(new Enemy("name", 10));
+        CreateCharacter(new Character("ashe" , "archer" , 100, 30));
+        CreateCharacter(new Character("teemo", "thief", 80, 20));
+        CreateCharacter(new Character("ezreal", "mage", 70, 100));
 
-        Enemy e = new Enemy("test", 1);
+        RemoveCharater(2);
+        CreateCharacter(new Character("ashe", "archer", 100, 30));
+    }
 
-        eList[0] = e;
+    public void CreateCharacter(Character c) {
+        characterList.Add(c);
+    }
+    public void RemoveCharater(int index) {
+        characterList.RemoveAt(index);
 
+        }
 
-        for(int i =0; i < enemyList.Length; i++) 
-        { 
-        
-        
+   public void PrintAllCharacter() {
+
+        int i = 0;
+        if(characterList.Count == 0)
+        {
+            Debug.Log("비어잇습니다");
         }
 
 
-        
-        Enemy e1 = new Enemy("elf , 10");
-        Enemy e2 = new Enemy("dragon , 100");
-
-        e1.GetEnemyInfo();
-        e2.GetEnemyInfo();
+        while(i < characterList.Count){
+            characterList[i].GetInfo();
+            i++;
+        }
+    
     }
+
 }
